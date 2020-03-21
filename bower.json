@@ -1,0 +1,8 @@
+{
+  "name": "resultreporter_site",
+  "dependencies": {
+    "bootstrap-table": "1.11.1",
+    "select2": "4.0.1",
+    "font-awesome": "~4"
+  }
+}
