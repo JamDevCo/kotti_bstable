@@ -14,11 +14,16 @@ from fanstatic import Resource
 
 library = Library("kotti_bstable", "static")
 
+js = Resource(
+    library,
+    "scripts.js")
+
 bootstrap_table = Group([
     Resource(library, "ext/bootstrap-table/dist/bootstrap-table.min.css"),
     Resource(
         library,
-        "ext/bootstrap-table/dist/bootstrap-table.min.js")
+        "ext/bootstrap-table/dist/bootstrap-table.min.js",
+        depends=[js])
 ])
 
 bootstrap_table_date_picker = Group([
