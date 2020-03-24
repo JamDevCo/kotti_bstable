@@ -16,7 +16,27 @@ library = Library("kotti_bstable", "static")
 
 bootstrap_table = Group([
     Resource(library, "ext/bootstrap-table/dist/bootstrap-table.min.css"),
-    Resource(library, "ext/bootstrap-table/dist/bootstrap-table.min.js")
+    Resource(
+        library,
+        "ext/bootstrap-table/dist/bootstrap-table.min.js")
+])
+
+bootstrap_table_date_picker = Group([
+    Resource(library, "ext/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"),
+    Resource(
+        library,
+        "ext/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js",
+        depends=[bootstrap_table]
+    )
+])
+
+bootstrap_table_filter_control = Group([
+    Resource(library, "ext/bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.css"),
+    Resource(
+        library,
+        "ext/bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.js",
+        depends=[bootstrap_table, bootstrap_table_date_picker]
+    )
 ])
 
 select2_component = Group([
@@ -26,13 +46,4 @@ select2_component = Group([
 
 font_awesome = Resource(library, "ext/font-awesome/css/font-awesome.min.css")
 
-css_and_js = Group([
-    Resource(
-        library,
-        "styles.css",
-        minified="styles.min.css"),
-    Resource(
-        library,
-        "scripts.js",
-        minified="scripts.min.js", depends=[bootstrap_table])
-])
+css_and_js = Group([bootstrap_table, bootstrap_table_filter_control])
